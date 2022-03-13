@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">FastingApp</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="text_1">Текст когда первая картинка</string>
+    <string name="text_2">Текст когда картинка номер два</string>
+    <string name="text_3">Текст когда картинка номер три</string>
+    <string name="text_4">Четвертая картинка</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,33 +1,41 @@
 package com.example.fastingapp
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import com.example.fastingapp.ui.main.SectionsPagerAdapter
-import com.example.fastingapp.databinding.ActivityMainBinding
+import android.widget.Button
 
-class MainActivity : AppCompatActivity() {
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.widget.ViewPager2
 
-    private lateinit var binding: ActivityMainBinding
+import com.example.fastingapp.ui.main.NumberAdapter
+
+
+
+class MainActivity : FragmentActivity() {
+
+    private lateinit var adapter: NumberAdapter
+    private lateinit var viewPager: ViewPager2
+    private lateinit var btnChange: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        adapter = NumberAdapter(this)
+        viewPager = findViewById(R.id.view_pager)
+        btnChange = findViewById(R.id.btnChange)
+        viewPager.adapter = adapter
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = binding.viewPager
-        viewPager.adapter = sectionsPagerAdapter
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when(position){
+                    0-> btnChange.text = "первая"
+                    1->btnChange.text = "вторая"
+                    2->btnChange.text = "третья"
+                    3-> btnChange.text = "четвертая"
+                }
 
-        binding.button2.setOnClickListener {
-            binding.textView.setText("ok")
-        }
-
+            }
+        })
     }
 }
